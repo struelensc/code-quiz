@@ -19,51 +19,53 @@
                 <p>Timer: <span class="timer"></span></p>
             </div>
         </header>
-
-        <!-- Title page with start button -->
-        <div id="titlePage" class="page" data-state="visible">
-            <h1>Coding Quiz Challenge</h1>
-
-            <p>Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds!</p>
-
-            <button>Start Quiz</button>
-        </div>
-
-        <!-- Quiz -->
-        <div id="quizPage" class="page" data-state="hidden">
-            <h2 id="question"></h2>
         
-            <ol id="multiple-choice">
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-            </ol>
-        
-            <p id="questionResult" class="hidden"></p>
-        </div>
+        <main>
+            <!-- Title page with start button -->
+            <div id="titlePage" class="page" data-state="visible">
+                <h1>Coding Quiz Challenge</h1>
 
-        <!-- Result page -->
-        <div id="resultsPage" class="page" data-state="hidden">
-            <h2>All done!</h2>
+                <p>Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds!</p>
 
-            <p>Your final score is <span id="score"></span></p>
+                <button id="startGame">Start Quiz</button>
+            </div>
 
-            <form>
-                <input placeholder="initials" id="initials"/>
-                <button id="submit">Submit</button>
-            </form>
-        </div>
+            <!-- Quiz -->
+            <div id="quizPage" class="page" data-state="hidden">
+                <h2 id="question"></h2>
+            
+                <ol id="multiple-choice">
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ol>
+            
+                <p id="questionResult" class="hidden"></p>
+            </div>
 
-        <!-- Highscore page -->
-        <div id="highscores" class="page" data-state="hidden">
-            <h1>Highscores</h1>
+            <!-- Result page -->
+            <div id="resultsPage" class="page" data-state="hidden">
+                <h2>All done!</h2>
 
-            <ol id="highscoreList"></ol>
+                <p>Your final score is <span id="score"></span></p>
 
-            <button>Go Back</button>
-            <button>Clear Highscores</button>
-        </div>
+                <form>
+                    <input placeholder="initials" id="initials"/>
+                    <button id="submit">Submit</button>
+                </form>
+            </div>
+
+            <!-- Highscore page -->
+            <div id="highscores" class="page" data-state="hidden">
+                <h1>Highscores</h1>
+
+                <ol id="highscoreList"></ol>
+
+                <button>Go Back</button>
+                <button>Clear Highscores</button>
+            </div>
+        </main>
         
         <script src="./assets/js/script.js"></script>
     </body>
