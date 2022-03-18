@@ -5,13 +5,16 @@ timeEl.textContent = secondsLeft;
 
 // Document handles
 var main = document.querySelector("main");
-var pages = [document.querySelector("#titlePage"), document.querySelector("#quizPage"), document.querySelector("#resultsPage"), document.querySelector("#highscores")];
-
-// Title page handles
 var titlePage = document.querySelector("#titlePage");
-var startGame = document.querySelector("#startGame");
+var quizPage = document.querySelector("#quizPage");
+var resultsPage = document.querySelector("#resultsPage");
+var highscores = document.querySelector("#highscores");
+var pages = [titlePage, quizPage, resultsPage, highscores];
+var correctAnswers = 0;
+var submitEL = main.querySelector("#submit");
+var score = resultsPage.querySelector("#score");
 
-
+// Quiz question objects
 var quizQuestion1 = {
     question: "A very useful tool used during development and debugging for printing content to the debugger is:",
     correctAnswerIndex: 3,
@@ -42,50 +45,101 @@ var quizQuestion5 = {
     answers: ["Else Loop", "For Loops", "Conditional Loop", "While Loop"]
 }
 
+var questionArr = [quizQuestion1, quizQuestion2, quizQuestion3, quizQuestion4, quizQuestion5];
+var questionArrState = 0;
 
-// Removes element on load
+// Generates title page on load and adds event listener for starting the game for the start game button
 window.addEventListener("load", function() {
-    var pages = [document.querySelector("#titlePage"), document.querySelector("#quizPage"), document.querySelector("#resultsPage"), document.querySelector("#highscores")];
-
-    for (let i = 0; i < pages.length; i++) {
-        var state = pages[i].getAttribute("data-state");
-
-        if (pages[i].state = "hidden"){
-            pages[i].style.visibility = "hidden";
+for (let i = 0; i < pages.length; i++) {
+        var state = pages[i].getAttribute("data-state")
+        
+        if (state === "none"){
+            pages[i].style.display = "none";
         }
     }
+
+
+    // Starts game and timer
+    startGame.addEventListener("click", function () {    
+        var titlePage = main.querySelector("#titlePage");
+        titlePage.style.display = "none";
+
+        var timerInterval = setInterval(function() {
+        secondsLeft--;
+        timeEl.textContent = secondsLeft;
+    
+        if(secondsLeft === 0) {
+            clearInterval(timerInterval);
+            // generate results page
+        }
+    
+        }, 1000);
+
+        generateQuizPage(questionArrState);
+    });
 });
 
-// Starts Game
-startGame.addEventListener("click", function () {    
-    titlePage.style.visibility = "hidden";
+// Generates looping quiz questions
+function generateQuizPage(index) {
+    quizPage.style.display = "block";
+    var questionAnswers = main.querySelector("#multipleChoice");
+    var questionTitle = main.querySelector("#question");
+    questionTitle.textContent = questionArr[index].question;
 
-    var timerInterval = setInterval(function() {
-      secondsLeft--;
-      timeEl.textContent = secondsLeft;
-  
-      if(secondsLeft === 0) {
-        clearInterval(timerInterval);
-      }
-  
-    }, 1000);
-});
+    var options = questionArr[index].answers;
 
-function generateQuizPage() {
-    var quizQuestions = [quizQuestion1, quizQuestion2, quizQuestion3, quizQuestion4, quizQuestion5];
-
-    var titleEL = document.createElement("h2");
-    titleEL.textContent = quizQuestion1.question;
-    main.append(titleEL);
-    console.log(titleEL);
-
-    var multipleChoiceEL = document.createElement("ol");
-    main.appendChild(multipleChoiceEL);
-
-    for (let i = 0; i < quizQuestion1.answers.length; i++) {
+    for (let i = 0; i < options.length; i++) {
         var listItem = document.createElement("li");
-        listItem.textContent = quizQuestion1.answers[i];
-        multipleChoiceEL.append(listItem);
-        console.log(listItem);
+        listItem.setAttribute("id", i);
+        listItem.textContent = options[i];
+        questionAnswers.appendChild(listItem);
+
+        listItem.addEventListener("click", questionResult);
     }
+}
+
+function questionResult (event){
+    var element = event.target;
+    var i = element.getAttribute("id");
+    var result = quizPage.querySelector("#questionResult");
+
+    if (questionArrState < (questionArr.length - 1)) {
+        // If answer is correct
+        if (i == questionArr[questionArrState].correctAnswerIndex){
+            result.textContent = "Correct!";
+            correctAnswers = correctAnswers + 1;
+        // If answer is wrong
+        } else {
+            secondsLeft = secondsLeft - 10;
+            result.textContent = "Wrong!";
+        }
+    // Terminates if all questions have been answered
+    } else {
+        console.log("end of game");
+        generateResults(correctAnswers);
+        return;
+    }
+
+    quizPage.style.display = "none";
+    quizPage.querySelector("ol").innerHTML = "";
+
+    questionArrState++;
+    generateQuizPage(questionArrState);
+}
+
+function generateResults() {
+    quizPage.style.display = "none";
+    resultsPage.style.display = "block";
+
+    score.textContent = correctAnswers * 20;
+    submitEL.addEventListener("click", formHandler);
+    localStorage.setItem("score", score);
+}
+
+function formHandler(event) {
+    event.preventDefault();
+    var initialsEl = main.querySelector("#initials");
+
+    var initials = initialsEl.value;
+    localStorage.setItem("initials", initials);
 }

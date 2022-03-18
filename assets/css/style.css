@@ -1,0 +1,66 @@
+html {
+    font-size: 62.5%;
+}
+
+h1 {
+    font-size: 4em;
+    margin: 2rem;
+}
+
+h2 {
+    font-size: 3em;
+    margin: 2rem;
+}
+
+p {
+    font-size: 2em;
+    margin: 2rem;
+}
+
+ol {
+    font-size: 2em;
+    margin: 3rem;
+}
+
+li {
+    padding: 1rem;
+    margin: 1rem;
+    width: fit-content;
+    background-color: #BA4A00;
+    color: white;
+    border-radius: 0.5em;
+}
+
+li:hover {
+    background-color: #DC7633;
+    cursor: pointer;
+}
+
+button {
+    background-color: #BA4A00;
+    font-size: 2rem;
+    color: white;
+    padding: 0.2rem 0.5rem;
+    border-radius: 0.3em;
+}
+
+button:hover {
+    background-color: #DC7633;
+}
+
+header {
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem;
+}
+
+main {
+    margin: 0 auto;
+    max-width: 34vw;
+}
+
+#titlePage {
+    text-align: center;
+}
