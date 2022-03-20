@@ -187,7 +187,10 @@ function generateHighscores() {
 
     // Button for Go Back
     goBack.addEventListener("click", function() {
-        location.reload();
+        titlePage.style.display = "block";
+        quizPage.style.display = "none";
+        resultsPage.style.display = "none";
+        highscoresPage.style.display = "none";
     })
 
     // Button for Clear Highscores
