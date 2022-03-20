@@ -13,7 +13,7 @@
         <!-- Highscore and timer -->
         <header id="header">
             <div>
-                <p>View Highscores</p>
+                <p id="highscoresEL">View Highscores</p>
             </div>
         
             <div>
@@ -23,7 +23,7 @@
         
         <main>
             <!-- Title page with start button -->
-            <div id="titlePage" class="page" data-state="visible">
+            <div id="titlePage">
                 <h1>Coding Quiz Challenge</h1>
 
                 <p>Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds!</p>
@@ -32,34 +32,42 @@
             </div>
 
             <!-- Quiz -->
-            <div id="quizPage" class="page" data-state="none">
+            <div id="quizPage">
                 <h2 id="question"></h2>
             
                 <ol id="multipleChoice"></ol>
             
-                <p id="questionResult" class="hidden"></p>
+                <p id="questionResult"></p>
             </div>
 
             <!-- Result page -->
-            <div id="resultsPage" class="page" data-state="none">
+            <div id="resultsPage">
                 <h2>All done!</h2>
 
                 <p>Your final score is <span id="score"></span>%</p>
 
                 <form>
+                    <label for="initials">Enter Initials:</label>
                     <input placeholder="initials" id="initials"/>
                     <button id="submit">Submit</button>
                 </form>
             </div>
 
             <!-- Highscore page -->
-            <div id="highscores" class="page" data-state="none">
+            <div id="highscores">
                 <h1>Highscores</h1>
 
-                <ol id="highscoreList"></ol>
+                <div id="highscoreContainer">
+                    <table id="highscoreList">
+                        <tr>
+                            <th class="header">Player</th>
+                            <th class="header">Score</th>
+                        </tr>
+                    </table>
+                </div>
 
-                <button>Go Back</button>
-                <button>Clear Highscores</button>
+                <button id="goBack">Go Back</button>
+                <button id="clearHS">Clear Highscores</button>
             </div>
         </main>
         
