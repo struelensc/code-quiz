@@ -47,9 +47,9 @@ var quizQuestion4 = {
 };
 
 var quizQuestion5 = {
-    question: "What is the type of loop that continues through a block of code as long as the specified condition remains TRUE?",
+    question: "What continues through a block of code as long as the specified condition remains TRUE?",
     correctAnswerIndex: 1,
-    answers: ["Else Loop", "For Loops", "Conditional Loop", "While Loop"]
+    answers: ["Else Loop", "For Loops", "Functions", "If Statements"]
 };
 
 var questionArr = [quizQuestion1, quizQuestion2, quizQuestion3, quizQuestion4, quizQuestion5];
