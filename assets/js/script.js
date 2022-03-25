@@ -143,6 +143,7 @@ function questionResult (event){
 
 // Generates the results page and form for adding to the highscores
 function generateResults() {
+    highscoresPage.style.display = "none";
     quizPage.style.display = "none";
     resultsPage.style.display = "block";
 
